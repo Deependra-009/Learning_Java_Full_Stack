@@ -1,0 +1,20 @@
+<table class="w-[100%]">
+  <thead>
+    <tr class="w-full">
+      <th class="text-center w-[10%] h-[80px] text-[20px] font-mono items-center">S.No</th>
+      <th class="text-center w-[70%] h-[80px] text-[20px] font-mono items-center">Topic Name</th>
+      <th class="text-center w-[20%] h-[80px] text-[20px] font-mono items-center">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="px-10 border-separate" *ngFor="let item of TopicsData;index as i">
+        <td class="text-center w-[10%] h-[80px] text-[20px] font-mono items-center">{{i+1}}</td>
+        <td class="text-center w-[10%] h-[80px] text-[20px] font-mono items-center">{{item.question}}</td>
+        <td class="text-center w-[10%] h-[80px] text-[20px] font-mono items-center">
+            <div class="">
+                <button (click)="navigateToSolution(item)" class="w-[50%] py-2 rounded-[50px] text-green-500 cursor-pointer hover:text-red-500 hover:border-red-500 border-[2px] border-green-500">Go</button>
+            </div>
+        </td>
+    </tr>
+  </tbody>
+</table>

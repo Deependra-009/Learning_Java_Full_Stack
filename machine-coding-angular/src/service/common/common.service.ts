@@ -15,6 +15,8 @@ export class CommonService {
       case 'PLUS':return 'assets/svg/plus.svg';
       case 'DELETE':return 'assets/svg/trash.svg';
       case 'RIGHT_ARROW': return 'assets/svg/chevron-right.svg';
+      case 'SHOW_PASSWORD': return 'assets/svg/show.svg';
+      case 'HIDE_PASSWORD': return 'assets/svg/hide.svg';
       default:return''
     }
   }
