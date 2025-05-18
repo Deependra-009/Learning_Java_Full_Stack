@@ -1,0 +1,140 @@
+<div class="w-full">
+  <div class="text-[25px]">Pipe</div>
+
+  <div class="mt-10 text-[20px]">
+    <div>
+      <ul>
+        <li>
+          <div class="underline pb-3 text-blue-500">Uppercase</div>
+          <app-coding-card>
+            <div ngNonBindable>
+              &lt;div&gt;{{ name | uppercase }}&lt;/div&gt;
+            </div>
+          </app-coding-card>
+          <div class="mt-4">
+            <div>
+              {{ name | uppercase }}
+            </div>
+          </div>
+        </li>
+
+        <hr class="w-[700px] my-10" />
+
+        <li>
+          <div class="underline pb-3 text-blue-500">Lowercase</div>
+          <app-coding-card>
+            <div ngNonBindable>
+              &lt;div&gt;{{ name | lowercase }}&lt;/div&gt;
+            </div>
+          </app-coding-card>
+          <div class="mt-4">
+            <div>
+              {{ name | lowercase }}
+            </div>
+          </div>
+        </li>
+
+        <hr class="w-[700px] my-10" />
+
+        <li>
+          <div class="underline pb-3 text-blue-500">Date</div>
+          <app-coding-card>
+            <div ngNonBindable>&lt;div&gt;{{ today | date }}&lt;/div&gt;</div>
+            <div ngNonBindable>&lt;div&gt;{{ today | date : "fullDate" }}&lt;/div&gt;</div>
+            <div ngNonBindable>&lt;div&gt;{{ today | date : "shortTime" }}&lt;/div&gt;</div>
+          </app-coding-card>
+          <div class="mt-4">
+            <div>
+              {{ today | date }}
+            </div>
+            <div>
+                {{ today | date : "fullDate" }}
+            </div>
+            <div>
+              {{ today | date : "shortTime" }}
+
+            </div>
+          </div>
+        </li>
+
+        <hr class="w-[700px] my-10" />
+
+        <li>
+          <div class="underline pb-3 text-blue-500">Currency</div>
+          <app-coding-card>
+            <div ngNonBindable>&lt;div&gt;{{ price | currency }}&lt;/div&gt;</div>
+            <div ngNonBindable>&lt;div&gt;{{ price | currency:'EUR' }}&lt;/div&gt;</div>
+            <div ngNonBindable>&lt;div&gt;{{ price | currency:'INR':'symbol-narrow':'1.0-0' }}&lt;/div&gt;</div>
+          </app-coding-card>
+          <div class="mt-4">
+            <div>
+                {{ price | currency }}
+            </div>
+            <div>
+                {{ price | currency:'EUR' }}
+            </div>
+            <div>
+              {{ price | currency:'INR':'symbol-narrow':'1.0-0' }}
+
+            </div>
+          </div>
+        </li>
+
+        <hr class="w-[700px] my-10" />
+
+        <li>
+          <div class="underline pb-3 text-blue-500">Percent</div>
+          <app-coding-card>
+            <div ngNonBindable>
+              &lt;div&gt;{{ percentage | percent:'1.1-1' }}&lt;/div&gt;
+            </div>
+          </app-coding-card>
+          <div class="mt-4">
+            <div>
+              {{ percentage | percent:'1.1-1' }}
+            </div>
+          </div>
+        </li>
+
+        <hr class="w-[700px] my-10" />
+
+        <li>
+          <div class="underline pb-3 text-blue-500">Slice</div>
+          <app-coding-card>
+            <div ngNonBindable>
+              &lt;div&gt;{{ message | slice:0:5 }}&lt;/div&gt;
+            </div>
+          </app-coding-card>
+          <div class="mt-4">
+            <div>
+              {{ message | slice:0:5 }}
+            </div>
+          </div>
+        </li>
+
+        <hr class="w-[700px] my-10" />
+
+        <li>
+          <div class="underline pb-3 text-blue-500">Custom pipe</div>
+          <app-coding-card>
+            <div ngNonBindable>
+              &lt;div&gt;{{ 'coding' | addPrefix:'Hello ':' world' }}&lt;/div&gt;
+            </div>
+            <div ngNonBindable>
+                &lt;div&gt;{{ 'learning' | addPrefix:'I am ':' angular' }}&lt;/div&gt;
+              </div>
+          </app-coding-card>
+          <div class="mt-4">
+            <div>
+              {{ 'coding' | addPrefix:'Hello ':' world' }}
+            </div>
+            <div>
+                {{'learning' | addPrefix:'I am ':' angular'}}
+            </div>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</div>

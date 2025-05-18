@@ -2,20 +2,22 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { HomePageComponent } from '../../pages/home-page/home-page.component';
+import { TopicsModule } from '../topic-module/topics/topics.module';
 
 
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    HomePageComponent
+    HomePageComponent,
   ],
   imports: [
-    CommonModule
-  ],
+    CommonModule,
+    TopicsModule,
+],
   exports:[
     NavbarComponent,
-    HomePageComponent
+    HomePageComponent,
   ]
 })
 export class SharedModule { }

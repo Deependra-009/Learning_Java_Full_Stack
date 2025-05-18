@@ -1,0 +1,22 @@
+<div class="w-[700px] border-2 border-gray-200">
+    <div class=" w-full py-2 px-10 bg-gray-100 flex justify-between">
+        <span>html</span>
+        <button class="cursor-pointer" (click)="copyText()">
+            <ng-container *ngIf="copySuccess">
+                <span class="flex items-center">
+                    <img [src]="getSvgName('COPIED')" class="h-[20px]  w-[20px] mr-1"/>
+                    <span>copied!</span>
+                </span>
+            </ng-container>
+            <ng-container *ngIf="!copySuccess">
+                <span class="flex items-center" >
+                    <img [src]="getSvgName('COPY')" class="h-[20px]  w-[20px] mr-1"/>
+                    <span>copy</span>
+                </span>
+            </ng-container>
+        </button>
+    </div>
+    <div #codingcard class="px-10 py-5">
+        <ng-content></ng-content>
+    </div>
+</div>
