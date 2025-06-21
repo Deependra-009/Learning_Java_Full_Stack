@@ -1,1 +1,65 @@
-<p>topic-2 works!</p>
+<div class="w-full">
+  <div class="text-[25px]">Directives</div>
+
+  <div class="mt-10 text-[20px]">
+    <div>
+      <ul>
+        <li>
+          <div class="underline pb-3 text-blue-500">*ngIf</div>
+          <app-coding-card type="html">
+            <div>
+              &lt;div *ngIf="displayBox1"&gt;Box 1 display (condition
+              true)&lt;/div&gt;
+              <br />
+              &lt;div *ngIf="displayBox2"&gt;Box 2 hidden (condition
+              false)&lt;/div&gt;
+            </div>
+          </app-coding-card>
+          <br />
+          <app-coding-card type="ts">
+            <div>
+              export class Topic2Component {{ "{" }}
+              <br />
+              displayBox1 = true; displayBox2 = false;
+              <br />
+              {{ "}" }}
+            </div>
+          </app-coding-card>
+
+          <div class="mt-4">
+            <div>
+              <div *ngIf="displayBox1">Box 1 display (condition true)</div>
+              <div *ngIf="displayBox2">Box 2 hidden (condition false)</div>
+            </div>
+          </div>
+        </li>
+
+        <hr class="w-[700px] my-10" />
+
+        <li>
+          <div class="underline pb-3 text-blue-500">*ngFor</div>
+          <app-coding-card type="html">
+            <div ngNonBindable>
+              &lt;div *ngFor="let item of itemsArray"&gt;{{ item }}&lt;/div&gt;
+            </div>
+          </app-coding-card>
+
+          <div class="mt-4">
+            <div>
+                <div *ngFor="let item of itemsArray">{{item}}</div>
+            </div>
+          </div>
+        </li>
+
+        <hr class="w-[700px] my-10" />
+
+        <li>
+            <div class="underline pb-3 text-blue-500">Custom Directive</div>
+            <div class="w-[700px]">
+                <p appHighlight="red">Hover over me to see the highlight!</p>
+            </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

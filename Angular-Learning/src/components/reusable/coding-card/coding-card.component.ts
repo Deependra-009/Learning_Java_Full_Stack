@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { CommonService } from '../../../service/common/common.service';
 
 @Component({
@@ -7,6 +7,8 @@ import { CommonService } from '../../../service/common/common.service';
   styleUrl: './coding-card.component.css',
 })
 export class CodingCardComponent {
+
+  @Input('type') codeType:string="html";
 
   public constructor(
     private commonService:CommonService
