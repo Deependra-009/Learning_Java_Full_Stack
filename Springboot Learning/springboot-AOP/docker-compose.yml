@@ -1,0 +1,40 @@
+#  deependra09/spring-boot-project:1.0.0
+services:
+  dbservice:
+    container_name: DB_CONTAINER
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - ./data:/var/lib/mysql
+    ports:
+      - 3309:3306
+    networks:
+      - spring_mysql
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  appservice:
+    container_name: APP_CONTAINER
+    image: deependra09/spring-boot-project:1.0.0
+    depends_on:
+      dbservice:
+        condition: service_healthy
+    environment:
+      - DB_HOST=dbservice
+      - DB_PORT=3306
+      - DB_USERNAME=root
+      - DB_PASSWORD=root
+      - DB_NAME=testdb
+    ports:
+      - 9090:8080
+    networks:
+      - spring_mysql
+
+
+networks:
+  spring_mysql:
+    driver: bridge
