@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+
+.cborder{
+    border:2px solid black;
+}
+
+.overflow-quick::-webkit-scrollbar{
+    width: 0px;
+}

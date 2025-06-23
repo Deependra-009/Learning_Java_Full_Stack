@@ -1,0 +1,64 @@
+<div class="w-[100%] h-[800px] border-[3px] border-blue-500">
+  <div
+    class="w-[100%] flex justify-center border-b-[3px] border-b-blue-500 items-center h-[100px]"
+  >
+    <h1 class="text-[25px] text-blue-500">Display Contact</h1>
+  </div>
+  <div class="w-[100%] h-[698px] overflow-y-auto overflow-quick">
+    <ng-container *ngFor="let item of mockContactList;index as i">
+      <div class="w-[100%] px-10 flex justify-between items-center h-[100px] border-b-[3px] border-b-blue-500">
+        <div class="w-[70%] flex justify-around">
+          <div class="w-[50%] text-[20px]">{{ item.name }}</div>
+          <div class="w-[50%] text-[20px] flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone-icon lucide-phone"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></svg>
+            <span class="ml-5">
+                {{ item.phoneNumber }}
+            </span>
+
+        </div>
+        </div>
+        <div class="w-[20%] flex justify-around">
+          <button class="w-[50px] text-red-500">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-trash2-icon lucide-trash-2"
+            >
+              <path d="M3 6h18" />
+              <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+              <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+              <line x1="10" x2="10" y1="11" y2="17" />
+              <line x1="14" x2="14" y1="11" y2="17" />
+            </svg>
+          </button>
+          <button class="w-[50px] text-blue-500">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-pencil-icon lucide-pencil"
+            >
+              <path
+                d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"
+              />
+              <path d="m15 5 4 4" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
