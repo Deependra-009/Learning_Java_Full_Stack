@@ -22,3 +22,5 @@ export const lastNames = [
   'Joshi',
   'Verma',
 ];
+
+export const SERVICE_URL="http://localhost:8080/contact-book";

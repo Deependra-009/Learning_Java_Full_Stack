@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonService } from '../../services/common.service';
-import { ContactRequestBean } from '../../interface/CommonModels';
+import { ContactRequestBean, ContactResponseBean } from '../../interface/CommonModels';
 import { FormsModule } from '@angular/forms';
+import { CommonRepositoryService } from '../../repository/common-repository.service';
 
 @Component({
   selector: 'app-add-contact',
@@ -18,7 +19,8 @@ export class AddContactComponent {
   }
 
   constructor(
-    private commonService:CommonService
+    private commonService:CommonService,
+    private commonRepository:CommonRepositoryService
   ){}
 
   generateRandomIndianContact(){
@@ -27,6 +29,15 @@ export class AddContactComponent {
 
   addContact(){
     console.log(this.contactData);
+    this.commonRepository.addContact(this.contactData).subscribe((data:any)=>{
+      console.log(data);
+      this.contactData={
+        name:'',
+        phoneNumber:''
+      }
+      this.commonRepository.updateContactList.next(data);
+
+    })
 
   }
 

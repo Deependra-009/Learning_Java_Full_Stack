@@ -1,9 +1,18 @@
 <app-navbar></app-navbar>
 <div class="w-[100%] mt-10 flex justify-between items-center px-20">
+  <ng-container *ngIf="!showUpdateFlag">
     <div class="w-[48%]">
-        <app-add-contact></app-add-contact>
+      <app-add-contact></app-add-contact>
     </div>
+  </ng-container>
+  <ng-container *ngIf="showUpdateFlag">
     <div class="w-[48%]">
-        <app-display-contact></app-display-contact>
+      <app-update-contact></app-update-contact>
     </div>
+  </ng-container>
+  <ng-container>
+    <div class="w-[48%]">
+      <app-display-contact></app-display-contact>
+    </div>
+  </ng-container>
 </div>

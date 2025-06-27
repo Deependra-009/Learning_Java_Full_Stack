@@ -2,6 +2,7 @@ package com.fse.backend.services;
 
 import com.fse.backend.dto.req.ContactRequestBean;
 import com.fse.backend.dto.res.ContactResponseBean;
+import com.fse.backend.dto.res.StatusMessage;
 import com.fse.backend.entity.ContactEntity;
 import com.fse.backend.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,10 +56,10 @@ public class ContactService {
                 .build();
     }
 
-    public String deleteContact(Long id) throws Exception {
+    public StatusMessage deleteContact(Long id) throws Exception {
         try{
             this.contactRepository.delete(ContactEntity.builder().id(id).build());
-            return "DELETE SUCCESSFULLY";
+            return StatusMessage.builder().message("DELETE SUCCESSFULLY").build();
         }
         catch (Exception e) {
             throw new Exception(e.getMessage());

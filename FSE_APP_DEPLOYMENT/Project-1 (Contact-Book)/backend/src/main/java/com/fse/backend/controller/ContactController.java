@@ -2,6 +2,7 @@ package com.fse.backend.controller;
 
 import com.fse.backend.dto.req.ContactRequestBean;
 import com.fse.backend.dto.res.ContactResponseBean;
+import com.fse.backend.dto.res.StatusMessage;
 import com.fse.backend.services.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/contact-book")
 public class ContactController {
 
@@ -30,7 +32,7 @@ public class ContactController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteContact(@PathVariable Long id) throws Exception {
+    public ResponseEntity<StatusMessage> deleteContact(@PathVariable Long id) throws Exception {
         return new ResponseEntity<>(this.contactService.deleteContact(id),HttpStatus.OK);
     }
 
