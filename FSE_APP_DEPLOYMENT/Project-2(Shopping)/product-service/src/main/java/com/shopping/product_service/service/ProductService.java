@@ -85,7 +85,7 @@ public class ProductService {
             throw new Exception("NOT SUFFICIENT QUANTITY AVAILABLE");
         }
         productEntity.setProductQuantity(""+(productQuantity - Long.parseLong(productListRequest.getQuantity())));
-//        productEntity = this.productRepository.save(productEntity);
+        productEntity = this.productRepository.save(productEntity);
 
         return ProductResponse
                 .builder()

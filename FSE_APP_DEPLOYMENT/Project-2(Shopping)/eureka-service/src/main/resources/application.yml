@@ -9,6 +9,12 @@ eureka:
   client:
     register-with-eureka: false
     fetch-registry: false
+  instance:
+    metadata-map:
+      version: v1.0.0
+      description: Product Service for managing catalog
+      maintainer: deependra04trivedi@gmail.com
+    instance-id: ${spring.application.name}:${server.port}
 
   server:
     wait-time-in-ms-when-sync-empty: 0

@@ -1,18 +1,19 @@
 server:
-  port: 9090
+  port: 9093
+
 spring:
   application:
-    name: PRODUCT-SERVICE
+    name: PAYMENT-SERVICE
+
   cloud:
     config:
       uri: http://localhost:9092
 
-
   datasource:
-    url: jdbc:mysql://localhost:3306/productdb?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/paymentdb?createDatabaseIfNotExist=true
     username: root
     password: deependra
-    driver-class-name : com.mysql.cj.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     hibernate:
@@ -22,18 +23,3 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
         format_sql: true
-
-
-#eureka:
-#  client:
-#    service-url:
-#      defaultZone: http://localhost:8761/eureka
-
-
-
-
-
-
-
-
-

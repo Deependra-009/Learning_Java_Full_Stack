@@ -5,10 +5,10 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/your-org/spring-config-repo
+          uri: https://github.com/Deependra-009/Learning_Java_Full_Stack/blob/main/FSE_APP_DEPLOYMENT/Project-2(Shopping)/config/application-configuration.yml
 
 server:
-  port:9092
+  port: 9092
 
 
 
