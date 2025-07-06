@@ -1,10 +1,7 @@
 package com.shopping.order_service.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
@@ -12,6 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table
+@Builder
 public class ProductList {
 
     @Id
@@ -19,8 +17,10 @@ public class ProductList {
     private Long orderProductsID;
     private Long productID;
     private String quantity;
+    private String price;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id")
     private OrderEntity orderEntity;
 
 }
