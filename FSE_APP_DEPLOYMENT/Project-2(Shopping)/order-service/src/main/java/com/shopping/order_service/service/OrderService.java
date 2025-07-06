@@ -4,8 +4,12 @@ import com.shopping.order_service.dto.OrderRequest;
 import com.shopping.order_service.dto.OrderResponse;
 import com.shopping.order_service.dto.ProductResponse;
 import com.shopping.order_service.dto.ProductsListRequest;
+import com.shopping.order_service.dto.payment.PaymentReceiptRequest;
+import com.shopping.order_service.dto.payment.PaymentReceiptResponse;
 import com.shopping.order_service.entity.OrderEntity;
 import com.shopping.order_service.entity.ProductList;
+import com.shopping.order_service.enums.PaymentMode;
+import com.shopping.order_service.feignClient.PaymentServiceFeignClient;
 import com.shopping.order_service.feignClient.ProductServiceFeignClient;
 import com.shopping.order_service.repository.OrderRepository;
 import com.shopping.order_service.repository.ProductListRepository;
@@ -23,6 +27,9 @@ public class OrderService {
 
     @Autowired
     private ProductServiceFeignClient productService;
+
+    @Autowired
+    private PaymentServiceFeignClient paymentServiceFeignClient;
 
     @Autowired
     private ProductListRepository productListRepository;
@@ -46,7 +53,9 @@ public class OrderService {
 
         // Step 2: Create and associate ProductList entities
         List<ProductList> productLists = new ArrayList<>();
+        double totalAmount=0;
         for (ProductResponse productResponse : productResponses) {
+            totalAmount+= Double.parseDouble(productResponse.getProductPrice());
             ProductList product = ProductList.builder()
                     .productID(productResponse.getProductID())
                     .price(productResponse.getProductPrice())
@@ -63,9 +72,20 @@ public class OrderService {
         // Step 4: Save the order (cascading will save all ProductList too)
         orderEntity = this.orderRepository.save(orderEntity);
 
+        // Step 5: Payment receipt generated
+        PaymentReceiptResponse paymentReceiptResponse = this.paymentServiceFeignClient.generatePaymentReceipt(
+                PaymentReceiptRequest
+                        .builder()
+                        .totalAmount(String.valueOf(totalAmount))
+                        .orderId(orderEntity.getOrderID())
+                        .paymentMode(orderRequest.getPaymentMode())
+                        .build()
+        ).getBody();
+
         return OrderResponse.builder()
                 .orderID(orderEntity.getOrderID())
                 .products(productResponses)
+                .paymentReceiptResponse(paymentReceiptResponse)
                 .build();
     }
 

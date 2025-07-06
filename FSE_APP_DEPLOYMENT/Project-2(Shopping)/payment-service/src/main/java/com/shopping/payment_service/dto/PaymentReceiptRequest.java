@@ -1,20 +1,19 @@
-package com.shopping.order_service.dto;
+package com.shopping.payment_service.dto;
 
-import com.shopping.order_service.enums.PaymentMode;
+import com.shopping.payment_service.enums.PaymentMode;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderRequest {
+public class PaymentReceiptRequest {
 
     private PaymentMode paymentMode;
-    private List<ProductsListRequest> productsList;
+    private String totalAmount;
+    private String orderId;
 
 }
