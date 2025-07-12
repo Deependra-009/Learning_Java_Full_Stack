@@ -10,6 +10,18 @@ spring:
 server:
   port: 9092
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
+  health:
+    config:
+      enabled: true
+
 
 
 
