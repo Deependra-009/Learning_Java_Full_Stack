@@ -5,6 +5,7 @@ import com.shopping.product_service.dto.ProductListRequest;
 import com.shopping.product_service.dto.ProductRequest;
 import com.shopping.product_service.dto.ProductResponse;
 import com.shopping.product_service.entity.ProductEntity;
+import com.shopping.product_service.exception.ProductServiceCustomException;
 import com.shopping.product_service.repository.ProductRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +51,7 @@ public class ProductService {
 
         ProductEntity productData=this.productRepository
                 .findById(id)
-                .orElseThrow(()->new Exception("PRODUCT NOT FOUND"));
+                .orElseThrow(()->new ProductServiceCustomException("Product with given ID not found","PRODUCT_NOT_FOUND"));
 
         return ProductResponse.builder()
                 .productID(productData.getProductID())
@@ -77,12 +78,12 @@ public class ProductService {
     public ProductResponse updateInventory(ProductListRequest productListRequest) throws Exception{
 
         ProductEntity productEntity=this.productRepository.findById(productListRequest.getProductID())
-                .orElseThrow(()->new RuntimeException("PRODUCT NOT AVAILABLE"));
+                .orElseThrow(()->new ProductServiceCustomException("Product with given ID not found","PRODUCT_NOT_FOUND"));
 
         long productQuantity=Long.parseLong(productEntity.getProductQuantity());
 
         if(productQuantity<Long.parseLong(productListRequest.getQuantity())){
-            throw new Exception("NOT SUFFICIENT QUANTITY AVAILABLE");
+            throw new ProductServiceCustomException("Product does not sufficient quantity","INSUFFICIENT_QUANTITY");
         }
         productEntity.setProductQuantity(""+(productQuantity - Long.parseLong(productListRequest.getQuantity())));
         productEntity = this.productRepository.save(productEntity);

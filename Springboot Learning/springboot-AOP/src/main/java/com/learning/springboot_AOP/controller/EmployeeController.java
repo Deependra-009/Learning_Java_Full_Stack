@@ -4,6 +4,7 @@ import com.learning.springboot_AOP.entity.EmployeeEntity;
 import com.learning.springboot_AOP.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.graphql.GraphQlProperties;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@Configuration
 @RequestMapping("/aop")
 public class EmployeeController {
 
