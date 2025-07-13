@@ -1,0 +1,59 @@
+server:
+  port: 9094
+
+spring:
+  application:
+    name: API-GATEWAY
+
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: ORDER-SERVICE
+              uri: lb://ORDER-SERVICE
+              predicates:
+                - Path=/order/**
+
+            - id: PRODUCT-SERVICE
+              uri: lb://PRODUCT-SERVICE
+              predicates:
+                - Path=/product/**
+
+            - id: PAYMENT-SERVICE
+              uri: lb://PAYMENT-SERVICE
+              predicates:
+                - Path=/payment/**
+
+  zipkin:
+    base-url: http://localhost:9411
+    enabled: true
+
+eureka:
+  instance:
+    health-check-url-path: /actuator/health
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    org.springframework.cloud.gateway: ALL
+  pattern:
+    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"

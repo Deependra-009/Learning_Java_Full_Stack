@@ -5,7 +5,9 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/Deependra-009/Learning_Java_Full_Stack/blob/main/FSE_APP_DEPLOYMENT/Project-2(Shopping)/config/application-configuration.yml
+          uri: https://github.com/Deependra-009/Learning_Java_Full_Stack
+          searchPaths: FSE_APP_DEPLOYMENT/Project-2(Shopping)/config
+          default-label: main
 
 server:
   port: 9092

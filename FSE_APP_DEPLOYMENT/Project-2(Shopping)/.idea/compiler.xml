@@ -10,7 +10,7 @@
         <module name="eureka-service" />
         <module name="config-server" />
       </profile>
-      <profile name="Annotation profile for product-service" enabled="true">
+      <profile name="Annotation profile for api-gateway-server" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -20,11 +20,13 @@
         <module name="product-service" />
         <module name="order-service" />
         <module name="payment-service" />
+        <module name="api-gateway-server" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="api-gateway-server" options="-parameters" />
       <module name="config-server" options="-parameters" />
       <module name="eureka-service" options="-parameters" />
       <module name="order-service" options="-parameters" />
