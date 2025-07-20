@@ -1,8 +1,10 @@
 package com.shopping.order_service.exception;
 
 import lombok.Getter;
+import lombok.ToString;
 
 @Getter
+@ToString
 public class CustomException extends RuntimeException{
     private String errorCode;
     private int status;

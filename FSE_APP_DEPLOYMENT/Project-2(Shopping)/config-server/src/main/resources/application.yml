@@ -5,24 +5,11 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/Deependra-009/Learning_Java_Full_Stack
-          searchPaths: FSE_APP_DEPLOYMENT/Project-2(Shopping)/config
-          default-label: main
+          uri: https://github.com/Deependra-009/spring-cloud-config.git
 
 server:
   port: 9092
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health,info
-  endpoint:
-    health:
-      show-details: always
-  health:
-    config:
-      enabled: true
 
 
 

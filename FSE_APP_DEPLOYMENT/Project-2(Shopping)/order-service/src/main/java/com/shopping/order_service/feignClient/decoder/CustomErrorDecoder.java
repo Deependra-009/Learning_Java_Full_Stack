@@ -32,7 +32,7 @@ public class CustomErrorDecoder implements ErrorDecoder {
 
             ErrorMessage errorResponse = objectMapper.readValue(responseBody, ErrorMessage.class);
             return new CustomException(errorResponse.getErrorMessage(), errorResponse.getErrorCode(), response.status());
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new CustomException("Internal Server Error","INTERNAL_SERVER_ERROR",500);
         }
 

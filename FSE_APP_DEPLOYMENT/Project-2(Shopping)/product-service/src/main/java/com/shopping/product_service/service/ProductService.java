@@ -85,7 +85,7 @@ public class ProductService {
         if(productQuantity<Long.parseLong(productListRequest.getQuantity())){
             throw new ProductServiceCustomException("Product does not sufficient quantity","INSUFFICIENT_QUANTITY");
         }
-        productEntity.setProductQuantity(""+(productQuantity - Long.parseLong(productListRequest.getQuantity())));
+//        productEntity.setProductQuantity(""+(productQuantity - Long.parseLong(productListRequest.getQuantity())));
         productEntity = this.productRepository.save(productEntity);
 
         return ProductResponse

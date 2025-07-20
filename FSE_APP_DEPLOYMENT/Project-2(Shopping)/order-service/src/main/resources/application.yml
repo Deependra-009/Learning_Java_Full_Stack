@@ -4,8 +4,17 @@ spring:
   application:
     name: ORDER-SERVICE
   cloud:
+    discovery:
+      enabled: true
+    openfeign:
+      circuitbreaker:
+        enabled: true
+    loadbalancer:
+      ribbon:
+        enabled: false
     config:
       uri: http://localhost:9092
+
 
 
   datasource:
@@ -24,33 +33,36 @@ spring:
         format_sql: true
 
 
-  zipkin:
-    base-url: http://localhost:9411
-    enabled: true
+
+
 
 management:
-  tracing:
-    sampling:
-      probability: 1.0
-
   endpoints:
     web:
       exposure:
-        include: health, info, metrics, prometheus, env
+        include: "*"
   endpoint:
     health:
       show-details: always
 
 
-logging:
-  pattern:
-    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
 
-
-
-
-
-
-
-
-
+resilience4j:
+  circuitbreaker:
+    instances:
+      PAYMENT-SERVICE:
+        registerHealthIndicator: true
+        slidingWindowSize: 2
+        minimumNumberOfCalls: 2
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+        permittedNumberOfCallsInHalfOpenState: 2
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        record-exceptions:
+          - org.springframework.web.client.ResourceAccessException
+          - java.net.ConnectException
+          - com.shopping.order_service.exception.CustomException
+          - java.lang.IllegalStateException
+          - feign.RetryableException
+          - java.net.SocketTimeoutException
+          - feign.FeignException

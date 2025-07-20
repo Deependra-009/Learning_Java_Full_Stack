@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("/order")
 public class OrderController {
 
-    @Value("${my.custom.value}")
+    @Value("${my.custom.value:default}")
     private String customValue;
 
     @Autowired

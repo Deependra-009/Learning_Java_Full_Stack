@@ -3,10 +3,14 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka
   instance:
+    health-check-url-path: /actuator/health
+    prefer-ip-address: true
     instance-id: ${spring.application.name}:${server.port}
 
-
 management:
+  tracing:
+    sampling:
+      probability: 1.0
   endpoints:
     web:
       exposure:
@@ -16,13 +20,14 @@ management:
       show-details: always
 
 logging:
-  level:
-    org.springframework.cloud.gateway: ALL
   pattern:
     level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
 
+spring:
+  zipkin:
+    base-url: http://localhost:9411
+    enabled: true
 
 my:
   custom:
-    value: HelloWorld
-
+    value: READY TO WORK

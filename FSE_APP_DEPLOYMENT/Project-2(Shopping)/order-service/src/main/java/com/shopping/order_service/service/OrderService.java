@@ -9,13 +9,16 @@ import com.shopping.order_service.dto.payment.PaymentReceiptResponse;
 import com.shopping.order_service.entity.OrderEntity;
 import com.shopping.order_service.entity.ProductList;
 import com.shopping.order_service.enums.PaymentMode;
+import com.shopping.order_service.exception.CustomException;
 import com.shopping.order_service.feignClient.PaymentServiceFeignClient;
 import com.shopping.order_service.feignClient.ProductServiceFeignClient;
 import com.shopping.order_service.repository.OrderRepository;
 import com.shopping.order_service.repository.ProductListRepository;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +39,7 @@ public class OrderService {
 
     @Autowired
     private OrderRepository orderRepository;
+
 
     public OrderResponse placeOrder(OrderRequest orderRequest){
 
@@ -73,20 +77,23 @@ public class OrderService {
         orderEntity = this.orderRepository.save(orderEntity);
 
         // Step 5: Payment receipt generated
-        PaymentReceiptResponse paymentReceiptResponse = this.paymentServiceFeignClient.generatePaymentReceipt(
-                PaymentReceiptRequest
-                        .builder()
-                        .totalAmount(String.valueOf(totalAmount))
-                        .orderId(orderEntity.getOrderID())
-                        .paymentMode(orderRequest.getPaymentMode())
-                        .build()
-        ).getBody();
+        PaymentReceiptRequest request = PaymentReceiptRequest.builder()
+                .totalAmount(String.valueOf(totalAmount))
+                .orderId(orderEntity.getOrderID())
+                .paymentMode(orderRequest.getPaymentMode())
+                .build();
+
+        PaymentReceiptResponse paymentReceiptResponse = generatePaymentReceipt(request);
 
         return OrderResponse.builder()
                 .orderID(orderEntity.getOrderID())
                 .products(productResponses)
                 .paymentReceiptResponse(paymentReceiptResponse)
                 .build();
+    }
+
+    public PaymentReceiptResponse generatePaymentReceipt(PaymentReceiptRequest request){
+        return this.paymentServiceFeignClient.generatePaymentReceipt(request).getBody();
     }
 
     public OrderResponse getOrdeDetails(String orderId) throws Exception {

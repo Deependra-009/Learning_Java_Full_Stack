@@ -24,21 +24,6 @@ spring:
         format_sql: true
 
 
-  zipkin:
-    base-url: http://localhost:9411
-    enabled: true
-
-management:
-  tracing:
-    sampling:
-      probability: 1.0
-
-logging:
-  pattern:
-    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
-
-
-
 
 
 
