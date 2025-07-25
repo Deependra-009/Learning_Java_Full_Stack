@@ -1,0 +1,37 @@
+version: '3'
+services:
+    eurekaserver:
+        image: 'deependra09/eurekaserver:1.0.0'
+        container_name: eurekaserver
+        ports:
+            - "8761:8761"
+    configserver:
+        image: 'deependra09/configserver:1.0.0'
+        container_name: configserver
+        ports:
+            - "9092:9092"
+        depends_on:
+            - eurekaserver
+        healthcheck:
+            test: ["CMD", "curl","-f","http://configserver:9092/actuator/health"]
+            interval: 10s
+            timeout: 5s
+            retries: 5
+            # start_period: 30s
+        environment:
+            - EUREKA_SERVER_ADDRESS=http://eurekaserver:8761/eureka
+    apigatewayserver:
+        image: 'deependra09/apigatewayserver:1.0.0'
+        container_name: apigatewayserver
+        ports:
+            - "9094:9094"
+        depends_on:
+            configserver:
+                condition: service_healthy
+
+        environment:
+            - EUREKA_SERVER_ADDRESS=http://eurekaserver:8761/eureka
+            - CONFIG_SERVER_URL=http://configserver:9092
+
+
+

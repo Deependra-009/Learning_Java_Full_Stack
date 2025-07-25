@@ -6,9 +6,13 @@ spring:
       server:
         git:
           uri: https://github.com/Deependra-009/spring-cloud-config.git
-
 server:
   port: 9092
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_SERVER_ADDRESS:http://localhost:8761/eureka}
 
 
 

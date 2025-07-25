@@ -13,5 +13,7 @@ public class PaymentServiceFallback implements PaymentServiceFeignClient {
     @Override
     public ResponseEntity<PaymentReceiptResponse> generatePaymentReceipt(PaymentReceiptRequest request) {
         throw new CustomException("Payment Service is unavailable: " , "UNAVAILABLE", 503);
+//        PaymentReceiptResponse fallbackResponse = new PaymentReceiptResponse();
+//        return new ResponseEntity<>(null, HttpStatus.SERVICE_UNAVAILABLE);
     }
 }

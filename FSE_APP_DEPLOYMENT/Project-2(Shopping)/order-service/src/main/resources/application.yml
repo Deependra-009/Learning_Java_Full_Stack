@@ -56,7 +56,7 @@ resilience4j:
         minimumNumberOfCalls: 2
         failureRateThreshold: 50
         waitDurationInOpenState: 10s
-        permittedNumberOfCallsInHalfOpenState: 2
+        permittedNumberOfCallsInHalfOpenState: 1
         automaticTransitionFromOpenToHalfOpenEnabled: true
         record-exceptions:
           - org.springframework.web.client.ResourceAccessException
