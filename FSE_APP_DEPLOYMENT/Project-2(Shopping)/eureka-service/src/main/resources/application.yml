@@ -10,6 +10,7 @@ eureka:
     register-with-eureka: false
     fetch-registry: false
   instance:
+    hostname: "${HOSTNAME:localhost}.eureka"
     metadata-map:
       version: v1.0.0
       description: Product Service for managing catalog

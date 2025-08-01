@@ -7,10 +7,10 @@ spring:
 
   cloud:
     config:
-      uri: http://localhost:9092
+      uri: ${CONFIG_SERVER_URL:http://localhost:9092}
 
   datasource:
-    url: jdbc:mysql://localhost:3306/paymentdb?createDatabaseIfNotExist=true
+    url: jdbc:mysql://${DB_HOST:localhost}:3306/paymentdb?createDatabaseIfNotExist=true
     username: root
     password: deependra
     driver-class-name: com.mysql.cj.jdbc.Driver

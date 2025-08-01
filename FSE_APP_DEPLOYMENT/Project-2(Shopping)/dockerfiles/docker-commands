@@ -1,0 +1,17 @@
+docker build -t deependra09/orderservice:1.0.0 .
+docker push deependra09/orderservice:1.0.0
+
+docker build -t deependra09/productservice:1.0.0 .
+docker push deependra09/productservice:1.0.0
+
+docker build -t deependra09/paymentservice:1.0.0 .
+docker push deependra09/paymentservice:1.0.0
+
+docker build -t deependra09/configserver:1.0.0 .
+docker push deependra09/configserver:1.0.0
+
+docker build -t deependra09/apigatewayserver:1.0.0 .
+docker push deependra09/apigatewayserver:1.0.0
+
+docker build -t deependra09/eurekaserver:1.0.0 .
+docker push deependra09/eurekaserver:1.0.0
