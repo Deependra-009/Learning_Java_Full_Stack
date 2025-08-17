@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: product-service-app
-        image: deependra09/productservice:22
+        image: deependra09/productservice:23
         ports:
         - containerPort: 9090
         env:
