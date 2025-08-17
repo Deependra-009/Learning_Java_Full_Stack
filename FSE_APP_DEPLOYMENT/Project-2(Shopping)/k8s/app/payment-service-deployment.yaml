@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: payment-service-app
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   selector:
     matchLabels:
@@ -30,8 +32,15 @@ spec:
           - name: DB_HOST
             valueFrom:
               configMapKeyRef:
-                key: DB_HOST
                 name: mysql-cm
+                key: DB_HOST
+          - name: DB_USERNAME
+            value: "root"
+          - name: DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysql-secret
+                key: MYSQL_ROOT_PASSWORD
 
 ---
 

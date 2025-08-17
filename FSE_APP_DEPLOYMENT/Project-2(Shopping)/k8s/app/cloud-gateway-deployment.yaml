@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: cloud-gateway-app
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
 spec:
   selector:
     matchLabels:
@@ -36,10 +38,11 @@ kind: Service
 metadata:
   name: cloud-gateway-svc
 spec:
-  type: LoadBalancer
+#  type: LoadBalancer
   selector:
     app: cloud-gateway-app
   ports:
   - port: 80
     targetPort: 9094
+  type: ClusterIP
 

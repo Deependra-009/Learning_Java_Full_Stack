@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: config-server-app
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   selector:
     matchLabels:
@@ -35,3 +37,4 @@ spec:
   ports:
   - port: 80
     targetPort: 9092
+  type: ClusterIP

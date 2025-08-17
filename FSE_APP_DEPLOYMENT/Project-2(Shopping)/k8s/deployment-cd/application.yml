@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: shopping-app
+  namespace: argocd
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: myalias=docker.io/deependra09
+    argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-creds
+    argocd-image-updater.argoproj.io/git-branch: main
+    argocd-image-updater.argoproj.io/myalias.force-update: "true"
+spec:
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: default
+  source:
+    repoURL: 'git@github.com:Deependra-009/Learning_Java_Full_Stack.git'
+    path: ./FSE_APP_DEPLOYMENT/Project-2(Shopping)/k8s
+    targetRevision: HEAD
+    directory:
+      recurse: true
+  project: default
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+      - Validate=true

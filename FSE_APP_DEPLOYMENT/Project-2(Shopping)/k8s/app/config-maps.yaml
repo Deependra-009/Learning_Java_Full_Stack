@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: eureka-cm
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+
+data:
+  EUREKA_SERVER_ADDRESS: "http://eureka:8761/eureka"
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-cm
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+data:
+  CONFIG_SERVER_URL: "http://config-server-svc"
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-cm
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+data:
+  DB_HOST: "mysql"
+
+---
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysql-secret
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+type: Opaque
+data:
+  # echo -n 'deependra' | base64
+  MYSQL_ROOT_PASSWORD: ZGVlcGVuZHJh
+

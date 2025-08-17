@@ -2,7 +2,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: product-service-app
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: product-service-app
@@ -13,7 +16,7 @@ spec:
     spec:
       containers:
       - name: product-service-app
-        image: deependra09/productservice:23
+        image: deependra09/productservice:1.0.0
         ports:
         - containerPort: 9090
         env:
@@ -30,8 +33,15 @@ spec:
           - name: DB_HOST
             valueFrom:
               configMapKeyRef:
-                key: DB_HOST
                 name: mysql-cm
+                key: DB_HOST
+          - name: DB_USERNAME
+            value: "root"
+          - name: DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysql-secret
+                key: MYSQL_ROOT_PASSWORD
 
 ---
 

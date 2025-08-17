@@ -2,6 +2,8 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: mysql-pv
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
 spec:
   capacity:
     storage: 1Gi
@@ -18,6 +20,8 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: mysql-pvc
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
 spec:
   resources:
     requests:
@@ -32,6 +36,8 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: mysql
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
 spec:
   selector:
     matchLabels:
@@ -51,7 +57,10 @@ spec:
           name: mysql
         env:
           - name: MYSQL_ROOT_PASSWORD
-            value: deependra
+            valueFrom:
+              secretKeyRef:
+                name: mysql-secret
+                key: MYSQL_ROOT_PASSWORD
         volumeMounts:
         - name: mysql-initdb
           mountPath: /docker-entrypoint-initdb.d
@@ -72,6 +81,8 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: mysql-initdb-cm
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
 data:
   init.sql: |
     CREATE DATABASE IF NOT EXISTS orderdb;
@@ -85,6 +96,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: mysql
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
 spec:
   clusterIP: None
   selector:
