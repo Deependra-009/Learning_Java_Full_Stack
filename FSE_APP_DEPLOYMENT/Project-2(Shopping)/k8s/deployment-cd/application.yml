@@ -14,7 +14,7 @@ spec:
     namespace: default
   source:
     repoURL: 'git@github.com:Deependra-009/Learning_Java_Full_Stack.git'
-    path: ./FSE_APP_DEPLOYMENT/Project-2(Shopping)/k8s
+    path: ./FSE_APP_DEPLOYMENT/Project-2(Shopping)/k8s/app
     targetRevision: HEAD
     directory:
       recurse: true
