@@ -3,9 +3,9 @@ kind: Deployment
 metadata:
   name: product-service-app
   annotations:
-    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-wave: "2"
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: product-service-app
