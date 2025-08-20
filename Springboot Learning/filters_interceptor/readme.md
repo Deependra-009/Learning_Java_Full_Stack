@@ -1,4 +1,3 @@
-````markdown
 # Filters vs Interceptors in Spring Boot
 
 This project demonstrates the difference between **Filters** and **Interceptors** in a Spring Boot application, and how to define their order in the request lifecycle.
