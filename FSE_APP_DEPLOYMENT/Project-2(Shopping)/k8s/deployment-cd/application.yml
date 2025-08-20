@@ -21,6 +21,7 @@ spec:
   project: default
   syncPolicy:
     automated:
+      prune: true       # removes resources not in Git
       selfHeal: true
     syncOptions:
       - Validate=true
