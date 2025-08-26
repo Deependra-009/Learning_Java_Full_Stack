@@ -37,18 +37,17 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
+                .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth->{
                     auth
                             .requestMatchers("/auth/**").permitAll()
                             .requestMatchers(HttpMethod.GET,"/student/get-particular-student/**").hasAuthority(Permission.READ.name())
                             .requestMatchers(HttpMethod.GET,"/student/get-all-student").hasRole(Role.ADMIN.name())
-                            .requestMatchers(HttpMethod.POST,"/student/add/**").hasAuthority(Permission.WRITE.name())
+                            .requestMatchers(HttpMethod.POST,"/student/add").hasAuthority(Permission.WRITE.name())
                             .requestMatchers(HttpMethod.DELETE,"/student/delete/**").hasAuthority(Permission.DELETE.name())
 
                             .anyRequest().authenticated();
-                })
-                .csrf(AbstractHttpConfigurer::disable)
-                .httpBasic(Customizer.withDefaults());
+                });
 
         httpSecurity.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
