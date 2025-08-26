@@ -1,10 +1,13 @@
 package com.learning.spring_security.config;
 
+import com.learning.spring_security.constant.Permission;
+import com.learning.spring_security.constant.Role;
 import com.learning.spring_security.jwt.JwtAuthFilter;
 import com.learning.spring_security.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -36,11 +39,15 @@ public class SecurityConfig {
         httpSecurity
                 .authorizeHttpRequests(auth->{
                     auth
-                            .requestMatchers("/h2-console/**", "/hi","/auth/**").permitAll()
+                            .requestMatchers("/auth/**").permitAll()
+                            .requestMatchers(HttpMethod.GET,"/student/get-particular-student/**").hasAuthority(Permission.READ.name())
+                            .requestMatchers(HttpMethod.GET,"/student/get-all-student").hasRole(Role.ADMIN.name())
+                            .requestMatchers(HttpMethod.POST,"/student/add/**").hasAuthority(Permission.WRITE.name())
+                            .requestMatchers(HttpMethod.DELETE,"/student/delete/**").hasAuthority(Permission.DELETE.name())
+
                             .anyRequest().authenticated();
                 })
                 .csrf(AbstractHttpConfigurer::disable)
-                .headers(header -> header.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin))
                 .httpBasic(Customizer.withDefaults());
 
         httpSecurity.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
