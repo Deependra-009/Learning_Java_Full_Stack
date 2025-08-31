@@ -1,4 +1,4 @@
-package CreateionalDesignPattern.Singleton;
+package CreationalDesignPattern.Singleton;
 
 /**
  * This interface helps to assign instance of singleton classes

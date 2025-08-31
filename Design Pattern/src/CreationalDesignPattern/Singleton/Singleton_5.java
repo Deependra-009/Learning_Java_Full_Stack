@@ -1,4 +1,4 @@
-package CreateionalDesignPattern.Singleton;
+package CreationalDesignPattern.Singleton;
 
 /**
  * Bill Pugh Singleton

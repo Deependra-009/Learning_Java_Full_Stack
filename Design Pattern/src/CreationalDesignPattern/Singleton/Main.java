@@ -1,6 +1,4 @@
-package CreateionalDesignPattern.Singleton;
-
-import sun.misc.Signal;
+package CreationalDesignPattern.Singleton;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

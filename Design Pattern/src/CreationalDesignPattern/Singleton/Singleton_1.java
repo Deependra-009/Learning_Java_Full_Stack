@@ -1,4 +1,4 @@
-package CreateionalDesignPattern.Singleton;
+package CreationalDesignPattern.Singleton;
 
 /**
  * Eager initialization with Thread safe

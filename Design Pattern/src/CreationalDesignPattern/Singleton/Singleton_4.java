@@ -1,4 +1,4 @@
-package CreateionalDesignPattern.Singleton;
+package CreationalDesignPattern.Singleton;
 
 /**
  * Lazy initialization with Thread safe [double check]
