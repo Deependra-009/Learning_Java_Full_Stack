@@ -1,0 +1,16 @@
+<div class="w-fulll">
+    <div class="text-[25px]">Show/Hide Password</div>
+    <div class="flex flex-col mt-20">
+        <label>Password</label>
+        <div class="flex justify-between items-center border-2 pr-[15px] border-gray-300 w-[340px]">
+            <input maxlength="20" type="{{inputType}}" class="w-[290px] focus:outline-0 px-3 text-[18px] h-[50px] "/>
+            <ng-container *ngIf="showPassword">
+                <img class="cursor-pointer" (click)="changeShowPassword()" [src]="getSvgName('SHOW_PASSWORD')"/>
+            </ng-container>
+            <ng-container *ngIf="!showPassword">
+                <img class="cursor-pointer"  (click)="changeShowPassword()" [src]="getSvgName('HIDE_PASSWORD')"/>
+            </ng-container>
+        </div>
+    </div>
+
+</div>
