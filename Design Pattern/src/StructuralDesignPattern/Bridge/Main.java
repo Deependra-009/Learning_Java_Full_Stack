@@ -1,5 +1,8 @@
 package StructuralDesignPattern.Bridge;
 
+/**
+ * Bridge Design Pattern
+ * */
 public class Main {
 
     public static void main(String[] args) {
