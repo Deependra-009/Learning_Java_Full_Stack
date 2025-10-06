@@ -1,9 +1,12 @@
-package StructuralDesignPattern.Adapter;
+package StructuralDesignPattern.Adapter.classes;
+
+import StructuralDesignPattern.Adapter.MediaAdapter;
+import StructuralDesignPattern.Adapter.interfaces.MediaPlayer;
 
 /**
  * Concrete Media Player using Adapter
  * */
-public class AudioPlayer implements MediaPlayer{
+public class AudioPlayer implements MediaPlayer {
     MediaAdapter mediaAdapter;
     @Override
     public void play(String audioType, String fileName) {

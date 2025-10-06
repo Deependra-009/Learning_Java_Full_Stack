@@ -1,4 +1,4 @@
-package StructuralDesignPattern.Adapter;
+package StructuralDesignPattern.Adapter.interfaces;
 
 /**
  * Target Interface (what client expects)

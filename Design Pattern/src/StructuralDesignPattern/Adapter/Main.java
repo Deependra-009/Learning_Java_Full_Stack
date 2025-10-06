@@ -1,7 +1,6 @@
 package StructuralDesignPattern.Adapter;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import StructuralDesignPattern.Adapter.classes.AudioPlayer;
 
 /**
  * Adaptor Design Pattern

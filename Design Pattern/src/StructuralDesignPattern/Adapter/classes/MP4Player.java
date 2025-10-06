@@ -1,6 +1,8 @@
-package StructuralDesignPattern.Adapter;
+package StructuralDesignPattern.Adapter.classes;
 
-public class MP4Player implements AdvancedMediaPlayer{
+import StructuralDesignPattern.Adapter.interfaces.AdvancedMediaPlayer;
+
+public class MP4Player implements AdvancedMediaPlayer {
     @Override
     public void playVlc(String fileName) {
         // do nothing

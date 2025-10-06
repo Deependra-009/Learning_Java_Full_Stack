@@ -1,4 +1,4 @@
-package StructuralDesignPattern.Adapter;
+package StructuralDesignPattern.Adapter.interfaces;
 
 /**
  * Existing Advanced Media Player (incompatible interface)

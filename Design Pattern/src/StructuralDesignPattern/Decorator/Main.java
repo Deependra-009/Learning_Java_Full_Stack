@@ -10,8 +10,7 @@ public class Main {
         Coffee coffee = new SimpleCoffee();
         System.out.println(coffee.getDescription() + " -> Rs." + coffee.getCost());
 
-        coffee = new MilkDecorator(coffee);
-        coffee = new SugarDecorator(coffee);
+        coffee = new MilkDecorator(new SugarDecorator(coffee));
 
         System.out.println(coffee.getDescription() + " -> Rs." + coffee.getCost());
 

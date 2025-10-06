@@ -1,9 +1,14 @@
 package StructuralDesignPattern.Adapter;
 
+import StructuralDesignPattern.Adapter.classes.MP4Player;
+import StructuralDesignPattern.Adapter.classes.VlcPlayer;
+import StructuralDesignPattern.Adapter.interfaces.AdvancedMediaPlayer;
+import StructuralDesignPattern.Adapter.interfaces.MediaPlayer;
+
 /**
  * Create Adapter (bridge between interfaces)
  * */
-public class MediaAdapter implements MediaPlayer{
+public class MediaAdapter implements MediaPlayer {
 
     AdvancedMediaPlayer advancedMediaPlayer;
 
